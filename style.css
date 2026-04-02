@@ -317,10 +317,14 @@ section.testimonials h2 {
 }
 
 .faq-answer {
-    background: rgba(255,255,255,0.05);
-    max-height: 0;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+}
+
+.faq-answer > div {
+    min-height: 0;
 }
 
 .faq-answer p {
@@ -328,8 +332,7 @@ section.testimonials h2 {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 1000px;
-    padding-bottom: 10px;
+    grid-template-rows: 1fr;
 }
 
 /* --- Guarantee Section --- */
