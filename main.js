@@ -24,22 +24,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
-        const icon = item.querySelector('.faq-toggle-icon');
 
         question.addEventListener('click', () => {
-            const isOpen = answer.classList.contains('active');
+            const isOpen = item.classList.contains('active');
 
             // Close all items
             faqItems.forEach(faqItem => {
-                faqItem.querySelector('.faq-answer').classList.remove('active');
-                faqItem.querySelector('.faq-toggle-icon').textContent = '+';
+                faqItem.classList.remove('active');
+                const otherIcon = faqItem.querySelector('.faq-toggle-icon');
+                if (otherIcon) otherIcon.textContent = '+';
             });
 
             // If it wasn't open, open it
             if (!isOpen) {
-                answer.classList.add('active');
-                icon.textContent = '-';
+                item.classList.add('active');
+                const icon = item.querySelector('.faq-toggle-icon');
+                if (icon) icon.textContent = '-';
             }
         });
     });
