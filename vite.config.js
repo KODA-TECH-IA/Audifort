@@ -4,6 +4,6 @@ export default defineConfig({
   base: '/Audifort/',
   root: 'Audifort',
   build: {
-    outDir: '../dist'
+    outDir: '../dist/Audifort'
   }
 })
