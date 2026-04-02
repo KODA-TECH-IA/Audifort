@@ -28,21 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const icon = item.querySelector('.faq-toggle-icon');
 
         question.addEventListener('click', () => {
-            // Close other open answers
-            document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
-                if (openAnswer !== answer) {
-                    openAnswer.classList.remove('active');
-                    openAnswer.previousElementSibling.querySelector('.faq-toggle-icon').textContent = '+';
-                }
+            const isOpen = answer.classList.contains('active');
+
+            // Close all items
+            faqItems.forEach(faqItem => {
+                faqItem.querySelector('.faq-answer').classList.remove('active');
+                faqItem.querySelector('.faq-toggle-icon').textContent = '+';
             });
 
-            // Toggle current answer
-            answer.classList.toggle('active');
-            
-            if (answer.classList.contains('active')) {
+            // If it wasn't open, open it
+            if (!isOpen) {
+                answer.classList.add('active');
                 icon.textContent = '-';
-            } else {
-                icon.textContent = '+';
             }
         });
     });
