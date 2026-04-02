@@ -425,5 +425,26 @@
     </footer>
 
     <script src="main.js?v=2.0"></script>
+    <script>
+        // FAQ Accordion - Inline Failsafe
+        document.querySelectorAll('.faq-question').forEach(function(question) {
+            question.addEventListener('click', function() {
+                var item = this.closest('.faq-item');
+                var isOpen = item.classList.contains('active');
+
+                document.querySelectorAll('.faq-item').forEach(function(i) {
+                    i.classList.remove('active');
+                    var icon = i.querySelector('.faq-toggle-icon');
+                    if (icon) icon.textContent = '+';
+                });
+
+                if (!isOpen) {
+                    item.classList.add('active');
+                    var icon = item.querySelector('.faq-toggle-icon');
+                    if (icon) icon.textContent = '-';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
