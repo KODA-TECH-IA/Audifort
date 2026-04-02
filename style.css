@@ -317,22 +317,23 @@ section.testimonials h2 {
 }
 
 .faq-answer {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.3s ease-out;
+    display: block;
+    max-height: 0;
     overflow: hidden;
-}
-
-.faq-answer > div {
-    min-height: 0;
+    transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    visibility: hidden;
 }
 
 .faq-answer p {
-    padding: 15px 20px;
+    padding: 20px;
+    margin: 0;
 }
 
 .faq-item.active .faq-answer {
-    grid-template-rows: 1fr;
+    max-height: 1000px;
+    visibility: visible;
+    padding-bottom: 10px;
 }
 
 /* --- Guarantee Section --- */

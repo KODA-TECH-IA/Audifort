@@ -19,29 +19,31 @@ document.addEventListener('DOMContentLoaded', () => {
     
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // --- FAQ Accordion Logic ---
-    const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
+    // --- FAQ Accordion Logic (Failsafe Event Delegation) ---
+    document.addEventListener('click', (e) => {
+        const question = e.target.closest('.faq-question');
+        if (!question) return;
 
-        question.addEventListener('click', () => {
-            const isOpen = item.classList.contains('active');
+        const item = question.closest('.faq-item');
+        if (!item) return;
 
-            // Close all items
-            faqItems.forEach(faqItem => {
-                faqItem.classList.remove('active');
-                const otherIcon = faqItem.querySelector('.faq-toggle-icon');
-                if (otherIcon) otherIcon.textContent = '+';
-            });
+        console.log('FAQ Clicked via Delegation');
+        const isOpen = item.classList.contains('active');
+        const allItems = document.querySelectorAll('.faq-item');
 
-            // If it wasn't open, open it
-            if (!isOpen) {
-                item.classList.add('active');
-                const icon = item.querySelector('.faq-toggle-icon');
-                if (icon) icon.textContent = '-';
-            }
+        // Close all items
+        allItems.forEach(i => {
+            i.classList.remove('active');
+            const icon = i.querySelector('.faq-toggle-icon');
+            if (icon) icon.textContent = '+';
         });
+
+        // Toggle current item
+        if (!isOpen) {
+            item.classList.add('active');
+            const icon = item.querySelector('.faq-toggle-icon');
+            if (icon) icon.textContent = '-';
+        }
     });
 
     // --- Smooth Scrolling for CTA links ---
